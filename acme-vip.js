@@ -1,13 +1,10 @@
-let customers = [{id: 1, name: 'aa', email: 'bbb', isVIP: true},
-                   {id: 33, name: 'vvv', email: 'google', isVIP: false}];
+let customers = [];
 
 const nameBox = document.querySelector('#name')
 const emailBox = document.querySelector('#email')
 const vipBox = document.querySelector('#is-vip')
 const vipCounts = document.querySelector('#count-vips');
 const vips = document.querySelector("#vips");
-
-const allDestroy = document(querySelectorAll)
 
 render();
 
@@ -22,20 +19,20 @@ document.querySelector('#create').addEventListener('click', ev => {
    customers.push({id: id, name: nameBox.value, email: emailBox.value, isVIP: vipBox.checked})
 
   render();
-  console.log(customers);
 });
 
-document.querySelectorAll('.destroy').addEventListener('click', ev => {
-  console.log('test');
-  let btnId = ev.target.dataset.id;
-  customers = customers.filter((cust) => cust.id !== btnId);
-  render();
-})
-
+function vipCount() {
+  return customers.reduce((acc, cur) => {
+    if (cur.isVIP) {
+      return acc + 1;
+    }
+    return acc;
+  }, 0)
+}
 
 function render() {
-  console.log('hello');
-  vipCounts.innerHTML = `<p>${customers.length} VIPs</p>`
+  vipCounts.innerHTML = `<p>${vipCount()} VIPs</p>`
+
 
   vips.innerHTML = "";
   customers.forEach(customer => {
@@ -46,9 +43,17 @@ function render() {
     }
 
     li.innerHTML = `${customer.name} (${customer.email})
-                    <button class='destroy' data-id="${customer.id}">Destroy</button>`;
+                    <button class='destroy' id="destroy${customer.id}" data-id="${customer.id}">Destroy</button>`;
     vips.appendChild(li);
+
+    const destroyBtn = document.querySelector(`#destroy${customer.id}`);
+
+    destroyBtn.addEventListener("click", ev => {
+      const btnId = ev.target.dataset.id * 1;
+      const idToDelete = customers.findIndex(customer => customer.id === btnId);
+      customers.splice(idToDelete, 1);
+      render();
+    })
   })
 }
-
 
