@@ -1,12 +1,42 @@
-* {
-  font-family: "Arial", sans-serif;
-}
-
 body {
-  display: flex;
+  font-family: "Arial", sans-serif;
+  width: 80%;
+  margin: 0 auto;
 }
 
-form {
+#input-form {
   border: 1px solid black;
-  padding: 0.5rem;
+  padding: 1rem;
 }
+
+.cust-input {
+    display: flex;
+}
+
+.cust-input label {
+    flex-basis: 20%;
+}
+
+#count-vips {
+    background-color: black;
+    color: white;
+    padding: 0.5rem 1rem;
+    margin-top: 0.5rem;
+}
+
+#vips {
+    padding: 0;
+}
+
+#vips li {
+    padding: 1rem;
+    margin-top: 0.5rem;
+    list-style: none;
+    font-weight: bold;
+}
+
+#vips .vip {
+    background-color: blue;
+    color: white;
+}
+
