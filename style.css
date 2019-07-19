@@ -40,3 +40,12 @@ body {
     color: white;
 }
 
+#message li {
+    display: none;
+    color: red;
+}
+
+#message li.turned-on {
+    display: list-item;
+}
+

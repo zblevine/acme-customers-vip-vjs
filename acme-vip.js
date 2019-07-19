@@ -5,13 +5,14 @@ const emailBox = document.querySelector('#email')
 const vipBox = document.querySelector('#is-vip')
 const vipCounts = document.querySelector('#count-vips');
 const vips = document.querySelector("#vips");
+const messageList = document.querySelector("#message");
 
 render();
 
 document.querySelector('#create').addEventListener('click', ev => {
   let id = Math.floor(Math.random() * 100);
-  while(customers.find(customer => {
-    return customer.id === id
+  while (customers.find(customer => {
+    return customer.id === id;
   })) {
     id = Math.floor(Math.random() * 100);
   }
@@ -29,6 +30,24 @@ function vipCount() {
     return acc;
   }, 0)
 }
+
+nameBox.addEventListener('keyup', ev => {
+    const nameMsg = document.querySelector('#nameMsg');
+    if (!nameBox.value.length) {
+        nameMsg.classList.add('turned-on');
+    } else {
+        nameMsg.classList.remove('turned-on');
+    }
+});
+
+emailBox.addEventListener('keyup', ev => {
+    const emailMsg = document.querySelector('#emailMsg');
+    if (!emailBox.value.includes('@')) {
+        emailMsg.classList.add('turned-on');
+    } else {
+        emailMsg.classList.remove('turned-on');
+    }
+});
 
 function render() {
   vipCounts.innerHTML = `<p>${vipCount()} VIPs</p>`
