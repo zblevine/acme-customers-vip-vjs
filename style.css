@@ -1,0 +1,12 @@
+* {
+  font-family: "Arial", sans-serif;
+}
+
+body {
+  display: flex;
+}
+
+form {
+  border: 1px solid black;
+  padding: 0.5rem;
+}
